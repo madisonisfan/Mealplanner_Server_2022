@@ -1,5 +1,6 @@
 const express = require("express");
 const recipeRouter = express.Router();
+const Recipe = require("../models/recipe");
 
 recipeRouter
   .route("/")

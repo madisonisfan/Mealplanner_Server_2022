@@ -8,6 +8,28 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var recipeRouter = require("./routes/recipeRouter");
 
+const mongoose = require("mongoose");
+
+//url for the mongodb server
+const url = "mongodb://localhost:27017/mealplanner";
+//setting up connection
+const connect = mongoose.connect(url, {
+  //handles deprecation warnings
+  useCreateIndex: true,
+  useFindAndModify: false,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+//rather then using a catch, another way to do it, is 2 pass an optional 2nd arg
+//1st arg: handles the result as usual
+//2nd arg: automatically handle the rejected case
+//more common to use catch, but this is another way
+connect.then(
+  () => console.log("connected correctly to server"),
+  (err) => console.log(err)
+);
+
 var app = express();
 
 // view engine setup
